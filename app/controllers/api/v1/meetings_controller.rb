@@ -17,8 +17,8 @@ class Api::V1::MeetingsController < ApplicationController
   def create
     begin
       CalndarMeeting.validation(params)
-      CalndarMeeting.create_meeting(params)
-      render json: {message: "Meeting created"}, status: 200
+      meeting = CalndarMeeting.create_meeting(params)
+      render json: {message: "Meeting created", meeting: meeting}, status: 200
     rescue MeetingRoomOccupiedError
       render json: {error_message: "Meeting room already occupied"}, status: 404
     rescue MeetingRoomDoesNotExistsError

@@ -25,6 +25,7 @@ module CalndarMeeting
   end
 
   def self.employees_validation(employee_ids)
+    raise EmployeeDoesNotExistsError if !employee_ids.present?
     employee_ids.each do |emp_no|
       emp = Employee.exists?(emp_no)
       raise EmployeeDoesNotExistsError if !emp
@@ -47,7 +48,7 @@ module CalndarMeeting
         return true
       end
     else
-      raise MeetingRoomDoesNotExitsError
+      raise MeetingRoomDoesNotExistsError
     end
     return false
   end
@@ -55,6 +56,7 @@ module CalndarMeeting
   def self.create_meeting(opts)
     employee_ids = opts[:employee_ids]
     mutex = Mutex.new
+    meeting = nil
     mutex.synchronize do
       meeting_room = meeting_room_validation(opts)
       raise MeetingRoomOccupiedError if meeting_room.present?
@@ -71,7 +73,7 @@ module CalndarMeeting
       end
       meeting.save
     end
-    return true
+    return meeting
   end
 
 end
