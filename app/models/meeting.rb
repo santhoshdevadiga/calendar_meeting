@@ -1,5 +1,5 @@
-class Employee < ApplicationRecord
+class Meeting < ApplicationRecord
   has_many :scheduled_meetings
   has_many :meetings, through: :scheduled_meetings
-  validates :name, presence: true
+  belongs_to :meeting_room
 end

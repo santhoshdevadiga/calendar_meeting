@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  meeting: one
+  is_accepted: false
+
+two:
+  employee: two
+  meeting: two
+  is_accepted: false

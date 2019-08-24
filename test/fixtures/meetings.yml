@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  meeting_room: 
+  is_occupied: false
+  start_datetime: 2019-08-24 12:08:28
+  end_datetime: 2019-08-24 12:08:28
+
+two:
+  meeting_room: 
+  is_occupied: false
+  start_datetime: 2019-08-24 12:08:28
+  end_datetime: 2019-08-24 12:08:28

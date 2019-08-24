@@ -1,4 +1,4 @@
-class MeetingRoomsController < ApplicationController
+class Api::V1::MeetingRoomsController < ApplicationController
   before_action :set_meeting_room, only: [:show, :update, :destroy]
 
   # GET /meeting_rooms

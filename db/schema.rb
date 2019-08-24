@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_061451) do
+ActiveRecord::Schema.define(version: 2019_08_24_064103) do
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -24,4 +24,26 @@ ActiveRecord::Schema.define(version: 2019_08_24_061451) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "meetings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "meeting_room_id"
+    t.boolean "is_occupied"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meeting_room_id"], name: "index_meetings_on_meeting_room_id"
+  end
+
+  create_table "scheduled_meetings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "employee_id"
+    t.bigint "meeting_id"
+    t.boolean "is_accepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_scheduled_meetings_on_employee_id"
+    t.index ["meeting_id"], name: "index_scheduled_meetings_on_meeting_id"
+  end
+
+  add_foreign_key "scheduled_meetings", "employees"
+  add_foreign_key "scheduled_meetings", "meetings"
 end
