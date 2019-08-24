@@ -18,7 +18,8 @@ class Api::V1::MeetingRoomsController < ApplicationController
     @meeting_room = MeetingRoom.new(meeting_room_params)
 
     if @meeting_room.save
-      render json: @meeting_room, status: :created, location: @meeting_room
+      render json: @meeting_room, status: :created
+      # , location: @meeting_room
     else
       render json: @meeting_room.errors, status: :unprocessable_entity
     end

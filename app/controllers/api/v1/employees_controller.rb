@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :update, :destroy]
+  before_action :set_employee, only: [:show, :update, :destroy, :meetings]
 
   # GET /employees
   def index
@@ -13,12 +13,17 @@ class Api::V1::EmployeesController < ApplicationController
     render json: @employee
   end
 
+  def meetings
+    render json: @employee.meetings
+  end
+
   # POST /employees
   def create
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      render json: @employee, status: :created, location: @employee
+      render json: @employee, status: :created
+      # , location: @employee
     else
       render json: @employee.errors, status: :unprocessable_entity
     end
